@@ -1,0 +1,48 @@
+{
+  "name": "@toridoriv/obsidian-fanfiction-toolbox",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "",
+  "author": {
+    "name": "Victoria Rodriguez",
+    "email": "vrodriguezfe@icloud.com",
+    "url": "https://github.com/toridoriv"
+  },
+  "license": "GPLv3",
+  "homepage": "https://github.com/toridoriv/obsidian-fanfiction-toolbox",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toridoriv/obsidian-fanfiction-toolbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/toridoriv/obsidian-fanfiction-toolbox/issues",
+    "email": "vrodriguezfe@icloud.com"
+  },
+  "scripts": {
+    "generate:manifest": "scripty",
+    "chmod": "find scripts ! -name '_*' -name '*.js' -exec chmod +x {} \\;",
+    "build": "node esbuild.config.js",
+    "postbuild": "npm run generate:manifest",
+    "push": "scripty"
+  },
+  "devDependencies": {
+    "@toridoriv/eslint-config": "github:toridoriv/eslint-config",
+    "@types/node": "^20.11.30",
+    "builtin-modules": "^3.3.0",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "obsidian": "^1.5.7-1",
+    "scripty": "^2.1.1",
+    "typescript": "^5.3.2"
+  },
+  "config": {
+    "plugin": {
+      "manifest": {
+        "name": "Fanfiction Toolbox"
+      }
+    }
+  },
+  "dependencies": {
+    "@wcj/markdown-to-html": "^3.0.2"
+  }
+}
