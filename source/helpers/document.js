@@ -1,5 +1,5 @@
 import markdown from "@wcj/markdown-to-html";
-import { Notice } from "obsidian";
+import * as obsidian from "obsidian";
 
 import { negate } from "./fp.js";
 
@@ -74,7 +74,7 @@ export async function copyAsHtmlToClipboard(editor) {
   if (typeof newText === "string") {
     await navigator.clipboard.writeText(newText);
 
-    new Notice("✨ Copied to clipboard!");
+    new obsidian.Notice("✨ Copied to clipboard!");
   }
 }
 
@@ -103,7 +103,7 @@ export function cleanParagraphs(editor) {
 
   doc.setValue(result);
 
-  new Notice("✨ Paragraphs cleaned!");
+  new obsidian.Notice("✨ Paragraphs cleaned!");
 }
 
 /**
@@ -197,7 +197,7 @@ export async function wrapInCodeBlock(editor) {
 
   await navigator.clipboard.writeText(newText);
 
-  new Notice("✨ Wrapped done and copied to clipboard!");
+  new obsidian.Notice("✨ Wrapped done and copied to clipboard!");
 }
 
 /**
