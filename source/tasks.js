@@ -24,10 +24,19 @@ CleanParagraphs.defineRibbonCallback(function () {
   }
 });
 
+const ExportToCodeBlock = new Task("Export to Code Block", "toy-brick");
+
+ExportToCodeBlock.defineEditorCallback(docHelpers.wrapInCodeBlock);
+
+ExportToCodeBlock.defineRibbonCallback(function () {
+  const file = this.app.workspace.activeEditor;
+
+  if (file && file.editor) {
+    docHelpers.wrapInCodeBlock(file.editor);
   }
 });
 
 /**
  * @type {Task[]}
  */
-export default [ToHtmlTask, CleanParagraphs];
+export default [ToHtmlTask, CleanParagraphs, ExportToCodeBlock];
