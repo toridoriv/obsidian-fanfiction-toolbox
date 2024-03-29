@@ -52,15 +52,23 @@ export function getFrontMatterIndexes(value) {
 }
 
 /**
- * @param {Obsidian.Editor} editor
+ * Copies the content of the current document in the Obsidian editor to the clipboard as
+ * HTML.
+ * It first retrieves the document content, removes any front matter, and converts the
+ * remaining Markdown content to HTML using the `markdown` function.
+ * If the conversion is successful and the result is a string, it writes the HTML to the
+ * clipboard and displays a success notice.
+ *
+ * @param {Obsidian.Editor} editor - The Obsidian editor instance.
+ * @returns {Promise<void>} A promise that resolves when the operation is complete.
  */
-export function copyAsHtmlToClipboard(editor) {
+export async function copyAsHtmlToClipboard(editor) {
   const doc = editor.getDoc();
   const text = doc.getValue();
   const newText = markdown(getContentWithoutFrontMatter(text));
 
   if (typeof newText === "string") {
-    navigator.clipboard.writeText(newText);
+    await navigator.clipboard.writeText(newText);
 
     new Notice("✨ Copied to clipboard!");
   }
