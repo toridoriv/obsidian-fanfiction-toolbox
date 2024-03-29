@@ -3,6 +3,7 @@ import { Notice } from "obsidian";
 
 const FM_DELIMITER = "---";
 const FM_DELIMITER_LENGTH = FM_DELIMITER.length;
+const HEADING_PATTERN = /^#{1,6}\s.*$/;
 
 /**
  * Get the content of a file without the front matter portion.
@@ -113,7 +114,7 @@ export function cleanParagraphs(editor) {
  * @returns {boolean} Returns true if the string is a title or heading, false otherwise.
  */
 export function isTitle(value) {
-  return value.startsWith("#");
+  return HEADING_PATTERN.test(value);
 }
 
 /**
