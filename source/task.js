@@ -1,26 +1,57 @@
+/**
+ * Represents a task with a name, icon, and optional editor and ribbon callbacks.
+ */
 export class Task {
   /**
-   * @param {string} name
-   * @param {string} icon
+   * Creates a new Task instance.
+   *
+   * @param {string} name - The human readable name of the task.
+   * @param {string} icon - The icon associated with the task.
    */
   constructor(name, icon) {
+    /**
+     * The human-readable name of the task.
+     *
+     * @type {string}
+     */
     this.name = name;
+
+    /**
+     * Generates a unique identifier for the task by converting the task name to lowercase
+     * and replacing all spaces with hyphens.
+     *
+     * For example, if the task name is "My Task", the generated ID will be "my-task".
+     */
     this.id = name.toLowerCase().replaceAll(" ", "-");
+
+    /**
+     * The human-readable name of the task.
+     *
+     * @type {string}
+     */
     this.icon = icon;
 
     /**
+     * The callback function to be executed when the task is triggered from the editor.
+     *
      * @type {Obsidian.CommandEditorCallback | null}
      */
     this.editorCallback = null;
+
     /**
+     * The callback function to be executed when the task is triggered from the ribbon.
+     *
      * @type {Obsidian.RibbonCallback | null}
      */
     this.ribbonCallback = null;
   }
 
   /**
-   * @param {Obsidian.CommandEditorCallback} fn
-   * @returns {this}
+   * Defines the callback function to be executed when the task is triggered from the
+   * editor.
+   *
+   * @param {Obsidian.CommandEditorCallback} fn - The callback function.
+   * @returns {this} The current Task instance.
    */
   defineEditorCallback(fn) {
     this.editorCallback = fn;
@@ -29,8 +60,11 @@ export class Task {
   }
 
   /**
-   * @param {Obsidian.RibbonCallback} fn
-   * @returns {this}
+   * Defines the callback function to be executed when the task is triggered from the
+   * ribbon.
+   *
+   * @param {Obsidian.RibbonCallback} fn - The callback function.
+   * @returns {this} The current Task instance.
    */
   defineRibbonCallback(fn) {
     this.ribbonCallback = fn;
@@ -39,7 +73,9 @@ export class Task {
   }
 
   /**
-   * @param {FanfictionToolboxPlugin} plugin
+   * Registers the task with the provided plugin.
+   *
+   * @param {FanfictionToolboxPlugin} plugin - The plugin to register the task with.
    */
   register(plugin) {
     if (this.editorCallback) {
