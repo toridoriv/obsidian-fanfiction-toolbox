@@ -1,8 +1,11 @@
 import markdown from "@wcj/markdown-to-html";
 import { Notice } from "obsidian";
 
+import { negate } from "./fp.js";
+
 const FM_DELIMITER = "---";
 const FM_DELIMITER_LENGTH = FM_DELIMITER.length;
+
 const HEADING_PATTERN = /^#{1,6}\s.*$/;
 
 /**
@@ -149,8 +152,8 @@ export function getCleanParagraphs(value) {
   const paragraphs = getContentWithoutFrontMatter(value)
     .split("\n")
     .filter(Boolean)
-    .filter((v) => !isTitle(v))
-    .filter((v) => !startsWithIdentation(v));
+    .filter(negate(isTitle))
+    .filter(negate(startsWithIdentation));
 
   return paragraphs.map(getCleanParagraph);
 }
