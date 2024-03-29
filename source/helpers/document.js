@@ -175,6 +175,31 @@ export function getCleanParagraph(value) {
 }
 
 /**
+ * Wraps the current document's content in a Markdown code block and copies it to the
+ * clipboard.
+ *
+ * This function retrieves the content of the currently open document in the Obsidian
+ * editor.
+ * It then wraps the entire content inside a Markdown code block by adding "```markdown"
+ * before and "```" after the content. The wrapped text is then copied to the clipboard
+ * using the navigator.clipboard API.
+ *
+ * Finally, a success notice is displayed to inform the user that the wrapping is done and
+ * the result has been copied to the clipboard.
+ *
+ * @param {Obsidian.Editor} editor - The Obsidian editor instance.
+ * @returns {Promise<void>} A promise that resolves when the operation is complete.
+ */
+export async function wrapInCodeBlock(editor) {
+  const doc = editor.getDoc();
+  const text = doc.getValue();
+  const newText = ["```markdown", text, "```"].join("\n");
+
+  await navigator.clipboard.writeText(newText);
+
+  new Notice("✨ Wrapped done and copied to clipboard!");
+}
+
 /**
  * Represents a paragraph that has been cleaned and formatted.
  *
