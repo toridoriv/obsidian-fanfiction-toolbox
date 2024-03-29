@@ -75,7 +75,17 @@ export async function copyAsHtmlToClipboard(editor) {
 }
 
 /**
- * @param {Obsidian.Editor} editor
+ * Cleans the paragraphs in the current document open in the Obsidian editor.
+ *
+ * This function retrieves the document content, gets the cleaned paragraphs using the
+ * `getCleanParagraphs` function, and then replaces each original paragraph with its
+ * formatted version in the document.
+ *
+ * The cleaned document content is then set back to the editor, and a success notice is
+ * displayed.
+ *
+ * @param {Obsidian.Editor} editor - The Obsidian editor instance.
+ * @returns {void}
  */
 export function cleanParagraphs(editor) {
   const doc = editor.getDoc();
