@@ -1,26 +1,29 @@
-import { cleanParagraphs, copyAsHtmlToClipboard } from "./helpers/document.js";
+import * as docHelpers from "./helpers/document.js";
 import { Task } from "./task.js";
 
 const ToHtmlTask = new Task("To HTML", "square-code");
 
-ToHtmlTask.defineEditorCallback(copyAsHtmlToClipboard);
+ToHtmlTask.defineEditorCallback(docHelpers.copyAsHtmlToClipboard);
 ToHtmlTask.defineRibbonCallback(function () {
   const file = this.app.workspace.activeEditor;
 
   if (file && file.editor) {
-    copyAsHtmlToClipboard(file.editor);
+    docHelpers.copyAsHtmlToClipboard(file.editor);
   }
 });
 
 const CleanParagraphs = new Task("Clean Paragraphs", "wrap-text");
 
-CleanParagraphs.defineEditorCallback(cleanParagraphs);
+CleanParagraphs.defineEditorCallback(docHelpers.cleanParagraphs);
 
 CleanParagraphs.defineRibbonCallback(function () {
   const file = this.app.workspace.activeEditor;
 
   if (file && file.editor) {
-    cleanParagraphs(file.editor);
+    docHelpers.cleanParagraphs(file.editor);
+  }
+});
+
   }
 });
 
