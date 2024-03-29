@@ -35,6 +35,7 @@ const context = await esbuild.context({
   sourcemap: false,
   treeShaking: true,
   outfile: "dist/main.js",
+  minify: true,
 });
 
 await context.rebuild();
