@@ -1,7 +1,9 @@
+import * as notices from "./helpers/notices.js";
+
 /**
  * Represents a task with a name, icon, and optional editor and ribbon callbacks.
  */
-export class Task {
+export class EditorTask {
   /**
    * Creates a new Task instance.
    *
@@ -53,8 +55,21 @@ export class Task {
    * @param {Obsidian.CommandEditorCallback} fn - The callback function.
    * @returns {this} The current Task instance.
    */
-  defineEditorCallback(fn) {
+  defineCallback(fn) {
     this.editorCallback = fn;
+
+    /**
+     * @this {FanfictionToolboxPlugin}
+     */
+    this.ribbonCallback = function () {
+      const file = this.app.workspace.activeEditor;
+
+      if (file && file.editor) {
+        fn.call(this, file.editor, file);
+      } else {
+        notices.showWarning("No active editor found.");
+      }
+    };
 
     return this;
   }
