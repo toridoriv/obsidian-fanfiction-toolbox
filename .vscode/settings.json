@@ -1,36 +1,45 @@
 {
+  "[handlebars]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always"
+    },
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true
+  },
   "[javascript]": {
-    "editor.codeActionsOnSave": [
-      "source.fixAll.eslint"
-    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always"
+    },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": true
   },
   "[json]": {
-    "editor.codeActionsOnSave": [
-      "source.fixAll.eslint"
-    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always"
+    },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": true
   },
   "[jsonc]": {
-    "editor.codeActionsOnSave": [
-      "source.fixAll.eslint"
-    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always"
+    },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": true
   },
   "[markdown]": {
-    "editor.codeActionsOnSave": [
-      "source.fixAll.eslint"
-    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always"
+    },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.wrappingIndent": "same"
   },
   "[typescript]": {
-    "editor.codeActionsOnSave": [
-      "source.fixAll.eslint"
-    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always"
+    },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": true
   },
@@ -43,7 +52,8 @@
     "jsonc",
     "javascript",
     "markdown",
-    "typescript"
+    "typescript",
+    "handlebars"
   ],
   "javascript.suggestionActions.enabled": false,
   "typescript.disableAutomaticTypeAcquisition": true,
