@@ -1,6 +1,7 @@
+import htmlParser from "@html-eslint/parser";
 import { eslintConfig } from "@toridoriv/eslint-config";
 
-eslintConfig.ignorePatterns[0].ignores?.push("dist/", "obsidian.md/");
+eslintConfig.ignorePatterns[0].ignores?.push("dist/", "obsidian.md/", "example/");
 
 /**
  * @type {import("eslint").Linter.FlatConfig[]}
@@ -15,8 +16,14 @@ export default [
   ...eslintConfig.markdown,
   {
     rules: {
-      "no-unused-vars": ["warn", { varsIgnorePattern: "^App$" }],
+      "no-unused-vars": ["warn", { varsIgnorePattern: "^App$|^obsidian$" }],
     },
   },
   ...eslintConfig.prettier,
+  {
+    files: ["**/*.hbs"],
+    languageOptions: {
+      parser: htmlParser,
+    },
+  },
 ];

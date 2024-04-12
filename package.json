@@ -26,6 +26,7 @@
     "push": "scripty"
   },
   "devDependencies": {
+    "@html-eslint/parser": "^0.24.1",
     "@toridoriv/eslint-config": "github:toridoriv/eslint-config",
     "@types/node": "^20.11.30",
     "builtin-modules": "^3.3.0",
@@ -43,6 +44,6 @@
     }
   },
   "dependencies": {
-    "@wcj/markdown-to-html": "^3.0.2"
+    "handlebars": "^4.7.8",
   }
 }
