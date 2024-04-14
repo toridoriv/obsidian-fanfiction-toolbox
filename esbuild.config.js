@@ -37,13 +37,28 @@ const context = await esbuild.context({
   sourcemap: false,
   treeShaking: true,
   outfile: "dist/main.js",
-  minify: true,
+  minify: false,
+  keepNames: true,
+  charset: "utf8",
+  plugins: [
+    {
+      name: "push-to-vault",
+      setup(build) {
+        build.onEnd(async () => {
+          console.info("Generating manifest...");
+          await import("./scripts/generate/manifest.js");
+          console.info("Copying files into vault...");
+          await import("./scripts/push.js");
+        });
+      },
+    },
+  ],
 });
 
-if (environment === "development") {
-  await context.watch();
-} else {
-  await context.rebuild();
+console.info("Building files...");
 
+await context.rebuild();
+
+if (environment !== "development") {
   process.exit(0);
 }

@@ -19,11 +19,13 @@
     "email": "vrodriguezfe@icloud.com"
   },
   "scripts": {
-    "start": "NODE_ENV=development node esbuild.config.js",
-    "generate:manifest": "scripty",
+    "start": "nodemon",
+    "build:dev": "NODE_ENV=development node esbuild.config.js",
     "build": "NODE_ENV=production node esbuild.config.js",
     "postbuild": "npm run generate:manifest",
-    "push": "scripty"
+  "nodemonConfig": {
+    "ignore": ["**/test/**", "**/dist/**", "**/example/**", "**/tmp/**"],
+    "exec": "npm run build:dev"
   },
   "devDependencies": {
     "@html-eslint/parser": "^0.24.1",
@@ -32,6 +34,7 @@
     "builtin-modules": "^3.3.0",
     "esbuild": "^0.20.2",
     "eslint": "^8.57.0",
+    "nodemon": "^3.1.0",
     "obsidian": "^1.5.7-1",
     "scripty": "^2.1.1",
     "typescript": "^5.3.2"
