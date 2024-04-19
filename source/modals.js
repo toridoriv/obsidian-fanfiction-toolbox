@@ -67,7 +67,7 @@ class EditorModal extends obsidian.Modal {
   /**
    * Sets the title and description of the modal.
    *
-   * @param {string} title            - The title of the modal.
+   * @param {string} title            - The display title of the modal.
    * @param {string} [description=""] - The description of the modal (optional).
    */
   setTitles(title, description = "") {
