@@ -209,7 +209,9 @@ function reverseArgs(fn) {
      * @param {any[]} args
      */
     [reversedName](...args) {
-      return fn(...args.reverse());
+      const sliced = fn.length < args.length ? args.slice(0, fn.length) : args;
+
+      return fn(...sliced.toReversed());
     },
   };
 
