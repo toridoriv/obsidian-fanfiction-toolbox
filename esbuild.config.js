@@ -40,6 +40,9 @@ const context = await esbuild.context({
   minify: false,
   keepNames: true,
   charset: "utf8",
+  define: {
+    "process.env.NODE_ENV": `"${environment}"`,
+  },
   plugins: [
     {
       name: "push-to-vault",
