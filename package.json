@@ -22,7 +22,8 @@
     "start": "nodemon",
     "build:dev": "NODE_ENV=development node esbuild.config.js",
     "build": "NODE_ENV=production node esbuild.config.js",
-    "postbuild": "npm run generate:manifest",
+    "generate:models": "scripty",
+    "generate:google-models": "scripty"
   "nodemonConfig": {
     "ignore": ["**/test/**", "**/dist/**", "**/example/**", "**/tmp/**"],
     "exec": "npm run build:dev"
