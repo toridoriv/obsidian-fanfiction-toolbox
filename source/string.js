@@ -13,6 +13,18 @@ function patchEllipsis(value) {
 }
 
 /**
+ * Replaces curly opening and closing quotation marks (`“`, `”`) with straight double
+ * quotation marks (`"`).
+ *
+ * @param {string} value - The input string that may contain curly quotation marks.
+ * @returns {string} The modified string with curly quotation marks replaced by straight
+ *                   double quotation marks.
+ */
+function patchQuotationMarks(value) {
+  return value.replaceAll(`“`, `"`).replaceAll(`”`, `"`);
+}
+
+/**
  * Replaces all occurrences of the HTML non-breaking space entity (&nbsp;) with a regular
  * space character.
  *
@@ -136,9 +148,39 @@ function replaceAll(pattern, value, replacement) {
   return value.replaceAll(regex, replacement);
 }
 
+/**
+ * Finds a substring between the provided delimiters within a given string.
+ *
+ * @param {string} value            - The string to search within.
+ * @param {object} delimiters       - An object containing the start and end delimiters.
+ * @param {string} delimiters.start The starting delimiter.
+ * @param {string} delimiters.end   The ending delimiter.
+ * @returns {string | null} The found substring, or null if either delimiter is not found
+ *                          or the substring is empty.
+ */
+function findBetweenDelimiters(value, delimiters) {
+  let start = value.indexOf(delimiters.start);
+
+  if (start === -1) {
+    return null;
+  }
+
+  start = start + delimiters.start.length;
+
+  const end = value.indexOf(delimiters.end, start + delimiters.start.length);
+
+  if (end === -1) {
+    return null;
+  }
+
+  return value.substring(start, end) || null;
+}
+
 export {
+  findBetweenDelimiters,
   matchAll,
   patchEllipsis,
+  patchQuotationMarks,
   removeAdditionalSpaces,
   removeMultipleLineBreaks,
   replaceAll,
