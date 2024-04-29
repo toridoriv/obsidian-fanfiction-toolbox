@@ -68,6 +68,48 @@ function cloneWithOverrides(base, overrides) {
 }
 
 /**
+ * Creates a deep clone of an object with specified overrides and merges additional
+ * properties.
+ *
+ * @template {AnyObject}      T
+ * @template {DeepPartial<T>} U
+ * @param {T} base      - The base object to clone and apply overrides to.
+ * @param {U} overrides - The object containing properties to override in the base object.
+ * @returns {T} A new object that is a clone of the base with overrides applied.
+ * @throws {Error} - Throws an error if either the base or the overrides is not an
+ *                 object.
+ */
+function mergeWithOverrides(base, overrides) {
+  if (!isObject(base) || !isObject(overrides)) {
+    throw new Error("Both inputs must be objects");
+  }
+
+  /**
+   * @type {T}
+   */
+  const result = structuredClone(base);
+
+  for (const key in base) {
+    if (!hasProperty(overrides, key)) {
+      continue;
+    }
+
+    const value = base[key];
+    const override = overrides[key];
+
+    if (!areEqualType(value, override)) {
+      continue;
+    }
+
+    result[key] = isObject(value) ? mergeWithOverrides(value, override) : override;
+  }
+
+  const clonedOverrides = structuredClone(overrides);
+
+  return Object.assign(clonedOverrides, result);
+}
+
+/**
  * Picks a specific property from an object and returns its value.
  *
  * @template {AnyObject} O
@@ -95,4 +137,4 @@ function first(list) {
   return list[0];
 }
 
-export { cloneWithOverrides, first, groupBy, pick };
+export { cloneWithOverrides, first, groupBy, mergeWithOverrides, pick };
